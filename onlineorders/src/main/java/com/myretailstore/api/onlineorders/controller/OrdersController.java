@@ -62,9 +62,9 @@ public class OrdersController {
 	
 	@PutMapping(path = "/orders/{orderid}")
 	public void updateOrder(@PathVariable int orderid, @RequestBody Order order) {
-		Order createdOrder = orderService.updateOrder(orderid, order);
+		Order updatedOrder = orderService.updateOrder(orderid, order);
 
-		if (createdOrder == null) {
+		if (updatedOrder == null) {
 			throw new OrderNotFoundException("Order Id : " + orderid);
 		}
 
