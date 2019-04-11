@@ -14,7 +14,7 @@
 				{
 					"name": "List Orders - 200 (OK)",
 					"request": {
-						"url": "http://localhost:8080/orders/",
+						"url": "http://myonlineretailstore-env.akbxpwth3c.ap-southeast-2.elasticbeanstalk.com:8080/orders/",
 						"method": "GET",
 						"header": [
 							{
@@ -59,7 +59,7 @@
 				{
 					"name": "Create Order - 201 (Created)",
 					"request": {
-						"url": "http://localhost:8080/orders/",
+						"url": "http://myonlineretailstore-env.akbxpwth3c.ap-southeast-2.elasticbeanstalk.com:8080/orders/",
 						"method": "POST",
 						"header": [
 							{
@@ -95,7 +95,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": " {\n        \"id\": 3,\n        \"description\": \"My watch\",\n        \"status\": \"RECEIVED\",\n        \"creationTime\": \"2019-04-10T16:10:13.797+0000\",\n        \"customer\": {\n            \"id\": 1,\n            \"name\": \"John\",\n            \"address\": {\n                \"streetNumber\": \"1-11\",\n                \"streetName\": \"Harbour\",\n                \"streetType\": \"Street\",\n                \"suburb\": \"Sydney\",\n                \"postCode\": \"2000\",\n                \"state\": \"NSW\",\n                \"country\": \"Australia\"\n            },\n            \"phone\": \"040000000\"\n        },\n        \"product\": {\n            \"id\": 0,\n            \"name\": \"IPhone\",\n            \"description\": \"IPhone\",\n            \"price\": {\n                \"amount\": 600,\n                \"currency\": \"AUD\"\n            },\n            \"category\": \"Electronics\"\n        }\n    }"
+							"raw": " {\n        \"id\": 13,\n        \"description\": \"My watch\",\n        \"status\": \"RECEIVED\",\n        \"creationTime\": \"2019-04-10T16:10:13.797+0000\",\n        \"customer\": {\n            \"id\": 1,\n            \"name\": \"John\",\n            \"address\": {\n                \"streetNumber\": \"1-11\",\n                \"streetName\": \"Harbour\",\n                \"streetType\": \"Street\",\n                \"suburb\": \"Sydney\",\n                \"postCode\": \"2000\",\n                \"state\": \"NSW\",\n                \"country\": \"Australia\"\n            },\n            \"phone\": \"040000000\"\n        },\n        \"product\": {\n            \"id\": 0,\n            \"name\": \"IPhone\",\n            \"description\": \"IPhone\",\n            \"price\": {\n                \"amount\": 600,\n                \"currency\": \"AUD\"\n            },\n            \"category\": \"Electronics\"\n        }\n    }"
 						},
 						"description": ""
 					},
@@ -104,7 +104,7 @@
 				{
 					"name": "Create Order - 400 (Bad Request) - invalid status input",
 					"request": {
-						"url": "http://localhost:8080/orders/",
+						"url": "http://myonlineretailstore-env.akbxpwth3c.ap-southeast-2.elasticbeanstalk.com:8080/orders/",
 						"method": "POST",
 						"header": [
 							{
@@ -149,7 +149,7 @@
 				{
 					"name": "Update Order - 200 (Success) - input orderid must exist",
 					"request": {
-						"url": "http://localhost:8080/orders/1",
+						"url": "http://myonlineretailstore-env.akbxpwth3c.ap-southeast-2.elasticbeanstalk.com:8080/orders/1",
 						"method": "PUT",
 						"header": [
 							{
@@ -187,14 +187,14 @@
 							"mode": "raw",
 							"raw": " {\n        \"id\": 1,\n        \"description\": \"My laptop\",\n        \"status\": \"RECEIVED\",\n        \"creationTime\": \"2019-04-10T16:10:13.797+0000\",\n        \"customer\": {\n            \"id\": 1,\n            \"name\": \"John\",\n            \"address\": {\n                \"streetNumber\": \"1-11\",\n                \"streetName\": \"Harbour\",\n                \"streetType\": \"Street\",\n                \"suburb\": \"Sydney\",\n                \"postCode\": \"2000\",\n                \"state\": \"NSW\",\n                \"country\": \"Australia\"\n            },\n            \"phone\": \"040000000\"\n        },\n        \"product\": {\n            \"id\": 0,\n            \"name\": \"IPhone\",\n            \"description\": \"IPhone\",\n            \"price\": {\n                \"amount\": 600,\n                \"currency\": \"AUD\"\n            },\n            \"category\": \"Electronics\"\n        }\n    }"
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
 				{
 					"name": "Update Order - 404 (Not Found) - invalid order id",
 					"request": {
-						"url": "http://localhost:8080/orders/800",
+						"url": "http://myonlineretailstore-env.akbxpwth3c.ap-southeast-2.elasticbeanstalk.com:8080/orders/800",
 						"method": "PUT",
 						"header": [
 							{
@@ -239,7 +239,7 @@
 				{
 					"name": "Update Order - 400 (Bad Request) - order id value in not right type",
 					"request": {
-						"url": "http://localhost:8080/orders/800",
+						"url": "http://myonlineretailstore-env.akbxpwth3c.ap-southeast-2.elasticbeanstalk.com:8080/orders/x3",
 						"method": "PUT",
 						"header": [
 							{
@@ -284,7 +284,7 @@
 				{
 					"name": "Delete Order - 200 (Success) - order id must exist",
 					"request": {
-						"url": "http://localhost:8080/orders/2",
+						"url": "http://myonlineretailstore-env.akbxpwth3c.ap-southeast-2.elasticbeanstalk.com:8080/orders/2",
 						"method": "DELETE",
 						"header": [
 							{
@@ -329,7 +329,7 @@
 				{
 					"name": "Delete Order - 404 (Not Found)",
 					"request": {
-						"url": "http://localhost:8080/orders/2",
+						"url": "http://myonlineretailstore-env.akbxpwth3c.ap-southeast-2.elasticbeanstalk.com:8080/orders/2",
 						"method": "DELETE",
 						"header": [
 							{
