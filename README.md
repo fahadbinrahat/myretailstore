@@ -17,9 +17,12 @@ In order to minimise load on back-end database this API uses Spring-Cache ("@Ena
 
 API accepts a header called "applicationname", if the value is "mobile", consumer is identified as a mobile application hence API behaves as follows for performance optimisation and mimimal resources utilisations:
 
-• Returns less number of records in pagination scenario. Such as 2 records per page (not implemented).
+• Returns less number of records in pagination scenario. Such as 2 records per page (not implemented)
+
 • Returns a deflated resource model instead of original canonical model(Not implemented)
+
 • Also offers consumer option to specify required attributes of resource in response by adding them to query string.
+
 
 ### Adding Customer and Product Resources
 
@@ -27,22 +30,28 @@ The API can support 3 resources i.e. Customers, Products and Orders. These all a
 
 API can be extended for following resources:-
 
-• /Customers
+#### /Customers
   
   Customer resource can have "Orders" resource enclosed which can in turn have "Products" resource enclosed. This relationship can be used for use-cases like:-
   
   • "Find products order by a given customer"
+  
   • "Find all orders placed by a customer"
 
-• /Products
+#### /Products
 
 Products resource is an independant resource and can be used for following use cases:-
   
   • "Add a product"
+  
   • "Delete a product"
+  
   • "Retrieve a product"
+  
   • "Update a product"
+  
   • "Retreive all products"
+  
   
   There can be more complex lookups as well such as GET /Orders/{productid}, which will return orders for only a given product.
 
