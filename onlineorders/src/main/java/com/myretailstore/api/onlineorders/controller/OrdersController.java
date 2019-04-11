@@ -25,12 +25,12 @@ public class OrdersController {
 	@Autowired
 	OrdersService orderService;
 
-	@GetMapping(path = "/orders")
+	@GetMapping(path = "/v1//orders")
 	public List<Order> retrieveAllOrders() {
 		return orderService.retrieveAllOrders();
 	}
 
-	@GetMapping(path = "/orders/{orderid}")
+	@GetMapping(path = "/v1/orders/{orderid}")
 	public Order retrieveOrder(@PathVariable int orderid) {
 		Order order = orderService.retrieveOrder(orderid);
 		if (order == null) {
@@ -39,7 +39,7 @@ public class OrdersController {
 		return order;
 	}
 
-	@PostMapping(path = "/orders")
+	@PostMapping(path = "/v1/orders")
 	public ResponseEntity<Object> createOrder(@RequestBody Order order) {
 		Order createdOrder = orderService.saveOrder(order);
 
@@ -50,7 +50,7 @@ public class OrdersController {
 
 	}
 
-	@DeleteMapping(path = "/orders/{orderid}")
+	@DeleteMapping(path = "/v1/orders/{orderid}")
 	public void deleteOrder(@PathVariable int orderid) {
 		Order createdOrder = orderService.deleteOrder(orderid);
 
@@ -60,7 +60,7 @@ public class OrdersController {
 
 	}
 	
-	@PutMapping(path = "/orders/{orderid}")
+	@PutMapping(path = "/v1/orders/{orderid}")
 	public void updateOrder(@PathVariable int orderid, @RequestBody Order order) {
 		Order updatedOrder = orderService.updateOrder(orderid, order);
 

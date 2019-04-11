@@ -3,270 +3,229 @@ swagger: '2.0'
 info:
 
   version: 1.0.0
-
+  
   title: My Retail Store API
-
+  
   description: This API offers capabilities to add, update, delete or retrieve online orders in RESTFul manner.
-
+ 
 paths:
 
   '/orders':
-
+  
     post:
-
+    
       description: This resource is used to create an order. The request has a specific structure which must be followed else API throws a validation error
-
+    
       consumes:
-
+    
         - application/json
-
+    
       produces:
-
+    
         - application/json
-
+    
       parameters:
-
+      
         # header attributes
-
+      
         - $ref: '#/parameters/correlationid'
-
-        - $ref: '#/parameters/userid'
+      
+        - $ref: '#/parameters/userid'      
       
         - $ref: "#/parameters/applicationname"
-
+      
         - $ref: "#/parameters/api-key"
 
         # request body
-
+        
         - name: body
-
+        
           description: request body
-
+          
           required: true
-
+          
           in: body
-
+          
           schema:
-
+          
             $ref: '#/definitions/CreateOrderRequest'
 
 
-      #responses
+      # responses
 
       responses:
-
-        '201':
-
-          description: Successfully screated the order
-
-          schema:
-
-            $ref: '#/definitions/CreateOrderResponse'
-
-        '400':  
-
-          description: Request failed due to invalid request
-
-          schema:
-
-            $ref: '#/definitions/ErrorResponse'
-
-        '500':
-
-          description: Request failure due to backend error or internal api processing error
-
-          schema:
-
-            $ref: '#/definitions/500ErrorResponse'   
-
-    get:
-
-      description: This resource is used to retrieve all orders. 
-
-      consumes:
-
-        - application/json
-
-      produces:
-
-        - application/json
-
-      parameters:
-
-        # header attributes
-
-        - $ref: '#/parameters/correlationid'
-
-        - $ref: '#/parameters/userid'
       
-        - $ref: "#/parameters/applicationname"
-
-        - $ref: "#/parameters/api-key"
+        '201':
         
-
-
-      #responses
-
-      responses:
-
-        '200':
-
           description: Successfully screated the order
-
+          
           schema:
-
-            $ref: '#/definitions/RetrieveOrdersResponse'
-
+          
+            $ref: '#/definitions/OrderCreationResponse'
+            
         '400':  
-
+        
           description: Request failed due to invalid request
-
+          
           schema:
-
+          
             $ref: '#/definitions/ErrorResponse'
-
+            
         '500':
-
+        
           description: Request failure due to backend error or internal api processing error
-
+          
           schema:
-
+          
             $ref: '#/definitions/500ErrorResponse'   
-
 
 
   '/orders/{orderid}':
-
+  
     put:
-
+    
       description: This resource is used to update an order. The request has a specific structure which must be followed else API throws a validation error      
-
       parameters:
-
+      
         #header attributes
-
+        
         - $ref: '#/parameters/correlationid'
-
+        
         - $ref: '#/parameters/userid'    
-
+        
         - $ref: "#/parameters/applicationname"
-
+        
         - $ref: "#/parameters/api-key"
-
+        
         - in: path
-
+        
           name: orderid
-
+          
           required: true
-
+          
           type: number
-
+          
           minimum: 1
-
+          
           description: Identifier of the order
 
         # request body
-
+        
         - name: body
-
+        
           description: request body
-
+          
           required: true
-
+          
           in: body
-
+          
           schema:
-
+          
             $ref: '#/definitions/UpdateOrderRequest'
 
-      #responses
+      # responses
       responses:
-
+        
         '200':
-
+        
           description: Successfully updated the order
-
+        
           schema:
-
+        
             $ref: '#/definitions/UpdateOrderResponse'
-
-        '400':
-
+        
+        '400':       
+        
           description: Request failed due to invalid request
-
+        
           schema:
-
+        
             $ref: '#/definitions/ErrorResponse'
-
+        
         '500':
-
+        
           description: Request failure due to backend error or internal api processing error
-
+        
           schema:
-
+        
             $ref: '#/definitions/500ErrorResponse'   
  
 parameters:
-
+  
   # Resource Parameters
-
+  
   correlationid:
-
+  
     name: correlationid
-
+  
     in: header
-
+  
     type: string
-
+  
     required: true
-
-    description: Unique identifier (a UUID format) for each request.
-
-
+  
+    description: "Unique identifier (a UUID format) for each request."
+    
+  
   userid:
-
+  
     name: userid
-
+    
     in: header
-
+    
     type: string
-
+    
     required: true
+    
+    description: "The ID of the person requesting access to data."
 
-    description: The ID of the person requesting access to data.
 
-
-  applicationname:
-
+  applicationame:
+  
     name: applicationname
-
+    
     in: header
-
+    
     type: string
-
+    
     required: true
-
+    
     description: Denotes the branch id.
-
+    
     
   api-key:
-
+  
     name: api-key
-
+    
     in: header
-
+    
     type: string
-
+    
     required: true
-
+    
     description: Unique api key for each environment. (Example:-Z4cb4a012-0a48-4f0e-aea9-609b7434afae)
-
-
+    
+    
+    
 definitions:
   # Create Order Request
   CreateOrderRequest:
     type: object
-    $ref: '#/definitions/Order'
+    properties:
+        id:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+        creationTime:
+          type: string
+        customer:
+          type: object
+          $ref: '#/definitions/Customer'
+        product:
+          type: object
+          $ref: '#/definitions/Product'
 
   # Update Order Request
   UpdateOrderRequest:
@@ -290,7 +249,6 @@ definitions:
         product:
           type: object
           $ref: '#/definitions/Product'
-  
  
   # Customer  
   Customer:
@@ -314,56 +272,6 @@ definitions:
           type: string
           description: This is the contact number of customer
 
-  #Order
-  Order:
-    type: object
-    properties:
-        id:
-          type: string
-        description:
-          type: string
-        status:
-          type: string
-        creationTime:
-          type: string
-        customer:
-          type: object
-          $ref: '#/definitions/Customer'
-        product:
-          type: object
-          $ref: '#/definitions/Product'
-  
-  # Product  
-  Address:
-    type: object
-    required:
-      - suburb
-      - postCode
-      - state
-      - country      
-    properties:
-        streetNumber:
-          type: string
-          description: Street number
-        streetName:
-          type: string
-          description: Street name.
-        streetType:
-          type: string
-          description: Street type.
-        suburb:
-          type: string
-          description: Suburb.
-        postCode:
-            type: string
-            description: Postcode
-        state:
-          type: string
-          description: State.
-        country:
-          type: string
-          description: Country.
-            
   # Product  
   Product:
     type: object
@@ -394,19 +302,11 @@ definitions:
             description: This is the category of product
                
   # HTTP 201 Successful Order creation response
-  CreateOrderResponse:
+  OrderCreationResponse:
     type: object
     properties:
         Status:
           type: string
-          
-  # HTTP 200 Successful Order creation response
-  RetrieveOrdersResponse:
-    type: array
-    items:
-      $ref: '#/definitions/Order'
-      
-  
           
 
   # HTTP 200 order update response
@@ -450,7 +350,7 @@ definitions:
           - The CorrelationId field is required.
           
           
-  # Error Responses: HTTP 500
+  # Error Responses: HTTP 500          
 
   500ErrorResponse:
 
@@ -467,7 +367,13 @@ definitions:
       Message:
 
         type: string
-        
+
+        example: Unexpected service error / backend error
+
       Data:
 
         type: string
+
+        example:
+          - < backend error code >
+          - < backend error description>
