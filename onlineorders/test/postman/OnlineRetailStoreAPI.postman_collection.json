@@ -1,0 +1,377 @@
+{
+	"variables": [],
+	"info": {
+		"name": "OnlineRetailStoreAPI",
+		"_postman_id": "23e19e32-4318-73af-47a6-733e2c341805",
+		"description": "Contains create,update,list and delete order tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "AWS EC2 Environment Endpoint",
+			"description": "",
+			"item": [
+				{
+					"name": "List Orders - 200 (OK)",
+					"request": {
+						"url": "http://localhost:8080/orders/",
+						"method": "GET",
+						"header": [
+							{
+								"key": "correlationid",
+								"value": "4eeb94e4-8da1-40ac-ac31-19b331504b22",
+								"description": ""
+							},
+							{
+								"key": "userid",
+								"value": "1Z2345",
+								"description": ""
+							},
+							{
+								"key": "api-key",
+								"value": "21f6a2bd-7f7c-310f-e053-3619f40adf17",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic dGVzdDp0ZXN0",
+								"description": ""
+							},
+							{
+								"key": "applicationname",
+								"value": "MobileApp",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"AliasScheme\": \"NPP\",\n  \"CifId\": \"800809\",\n  \"Account\": {\n    \"BSB\": null,\n    \"Number\": \"209450803\",\n    \"ProductFamilyCode\": \"LAH\"\n  }\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create Order - 201 (Created)",
+					"request": {
+						"url": "http://localhost:8080/orders/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "correlationid",
+								"value": "4eeb94e4-8da1-40ac-ac31-19b331504b22",
+								"description": ""
+							},
+							{
+								"key": "userid",
+								"value": "1Z2345",
+								"description": ""
+							},
+							{
+								"key": "api-key",
+								"value": "21f6a2bd-7f7c-310f-e053-3619f40adf17",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic dGVzdDp0ZXN0",
+								"description": ""
+							},
+							{
+								"key": "applicationname",
+								"value": "MobileApp",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n        \"id\": 3,\n        \"description\": \"My watch\",\n        \"status\": \"RECEIVED\",\n        \"creationTime\": \"2019-04-10T16:10:13.797+0000\",\n        \"customer\": {\n            \"id\": 1,\n            \"name\": \"John\",\n            \"address\": {\n                \"streetNumber\": \"1-11\",\n                \"streetName\": \"Harbour\",\n                \"streetType\": \"Street\",\n                \"suburb\": \"Sydney\",\n                \"postCode\": \"2000\",\n                \"state\": \"NSW\",\n                \"country\": \"Australia\"\n            },\n            \"phone\": \"040000000\"\n        },\n        \"product\": {\n            \"id\": 0,\n            \"name\": \"IPhone\",\n            \"description\": \"IPhone\",\n            \"price\": {\n                \"amount\": 600,\n                \"currency\": \"AUD\"\n            },\n            \"category\": \"Electronics\"\n        }\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create Order - 400 (Bad Request) - invalid status input",
+					"request": {
+						"url": "http://localhost:8080/orders/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "correlationid",
+								"value": "4eeb94e4-8da1-40ac-ac31-19b331504b22",
+								"description": ""
+							},
+							{
+								"key": "userid",
+								"value": "1Z2345",
+								"description": ""
+							},
+							{
+								"key": "api-key",
+								"value": "21f6a2bd-7f7c-310f-e053-3619f40adf17",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic dGVzdDp0ZXN0",
+								"description": ""
+							},
+							{
+								"key": "applicationname",
+								"value": "MobileApp",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n        \"id\": 3,\n        \"description\": \"My watch\",\n        \"status\": \"UNKNOWN\",\n        \"creationTime\": \"2019-04-10T16:10:13.797+0000\",\n        \"customer\": {\n            \"id\": 1,\n            \"name\": \"John\",\n            \"address\": {\n                \"streetNumber\": \"1-11\",\n                \"streetName\": \"Harbour\",\n                \"streetType\": \"Street\",\n                \"suburb\": \"Sydney\",\n                \"postCode\": \"2000\",\n                \"state\": \"NSW\",\n                \"country\": \"Australia\"\n            },\n            \"phone\": \"040000000\"\n        },\n        \"product\": {\n            \"id\": 0,\n            \"name\": \"IPhone\",\n            \"description\": \"IPhone\",\n            \"price\": {\n                \"amount\": 600,\n                \"currency\": \"AUD\"\n            },\n            \"category\": \"Electronics\"\n        }\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update Order - 200 (Success) - input orderid must exist",
+					"request": {
+						"url": "http://localhost:8080/orders/1",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "correlationid",
+								"value": "4eeb94e4-8da1-40ac-ac31-19b331504b22",
+								"description": ""
+							},
+							{
+								"key": "userid",
+								"value": "1Z2345",
+								"description": ""
+							},
+							{
+								"key": "api-key",
+								"value": "21f6a2bd-7f7c-310f-e053-3619f40adf17",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic dGVzdDp0ZXN0",
+								"description": ""
+							},
+							{
+								"key": "applicationname",
+								"value": "MobileApp",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n        \"id\": 1,\n        \"description\": \"My laptop\",\n        \"status\": \"RECEIVED\",\n        \"creationTime\": \"2019-04-10T16:10:13.797+0000\",\n        \"customer\": {\n            \"id\": 1,\n            \"name\": \"John\",\n            \"address\": {\n                \"streetNumber\": \"1-11\",\n                \"streetName\": \"Harbour\",\n                \"streetType\": \"Street\",\n                \"suburb\": \"Sydney\",\n                \"postCode\": \"2000\",\n                \"state\": \"NSW\",\n                \"country\": \"Australia\"\n            },\n            \"phone\": \"040000000\"\n        },\n        \"product\": {\n            \"id\": 0,\n            \"name\": \"IPhone\",\n            \"description\": \"IPhone\",\n            \"price\": {\n                \"amount\": 600,\n                \"currency\": \"AUD\"\n            },\n            \"category\": \"Electronics\"\n        }\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update Order - 404 (Not Found) - invalid order id",
+					"request": {
+						"url": "http://localhost:8080/orders/800",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "correlationid",
+								"value": "4eeb94e4-8da1-40ac-ac31-19b331504b22",
+								"description": ""
+							},
+							{
+								"key": "userid",
+								"value": "1Z2345",
+								"description": ""
+							},
+							{
+								"key": "api-key",
+								"value": "21f6a2bd-7f7c-310f-e053-3619f40adf17",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic dGVzdDp0ZXN0",
+								"description": ""
+							},
+							{
+								"key": "applicationname",
+								"value": "MobileApp",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n        \"id\": 1,\n        \"description\": \"My laptop\",\n        \"status\": \"RECEIVED\",\n        \"creationTime\": \"2019-04-10T16:10:13.797+0000\",\n        \"customer\": {\n            \"id\": 1,\n            \"name\": \"John\",\n            \"address\": {\n                \"streetNumber\": \"1-11\",\n                \"streetName\": \"Harbour\",\n                \"streetType\": \"Street\",\n                \"suburb\": \"Sydney\",\n                \"postCode\": \"2000\",\n                \"state\": \"NSW\",\n                \"country\": \"Australia\"\n            },\n            \"phone\": \"040000000\"\n        },\n        \"product\": {\n            \"id\": 0,\n            \"name\": \"IPhone\",\n            \"description\": \"IPhone\",\n            \"price\": {\n                \"amount\": 600,\n                \"currency\": \"AUD\"\n            },\n            \"category\": \"Electronics\"\n        }\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update Order - 400 (Bad Request) - order id value in not right type",
+					"request": {
+						"url": "http://localhost:8080/orders/800",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "correlationid",
+								"value": "4eeb94e4-8da1-40ac-ac31-19b331504b22",
+								"description": ""
+							},
+							{
+								"key": "userid",
+								"value": "1Z2345",
+								"description": ""
+							},
+							{
+								"key": "api-key",
+								"value": "21f6a2bd-7f7c-310f-e053-3619f40adf17",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic dGVzdDp0ZXN0",
+								"description": ""
+							},
+							{
+								"key": "applicationname",
+								"value": "MobileApp",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n        \"id\": 1,\n        \"description\": \"My laptop\",\n        \"status\": \"RECEIVED\",\n        \"creationTime\": \"2019-04-10T16:10:13.797+0000\",\n        \"customer\": {\n            \"id\": 1,\n            \"name\": \"John\",\n            \"address\": {\n                \"streetNumber\": \"1-11\",\n                \"streetName\": \"Harbour\",\n                \"streetType\": \"Street\",\n                \"suburb\": \"Sydney\",\n                \"postCode\": \"2000\",\n                \"state\": \"NSW\",\n                \"country\": \"Australia\"\n            },\n            \"phone\": \"040000000\"\n        },\n        \"product\": {\n            \"id\": 0,\n            \"name\": \"IPhone\",\n            \"description\": \"IPhone\",\n            \"price\": {\n                \"amount\": 600,\n                \"currency\": \"AUD\"\n            },\n            \"category\": \"Electronics\"\n        }\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Order - 200 (Success) - order id must exist",
+					"request": {
+						"url": "http://localhost:8080/orders/2",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "correlationid",
+								"value": "4eeb94e4-8da1-40ac-ac31-19b331504b22",
+								"description": ""
+							},
+							{
+								"key": "userid",
+								"value": "1Z2345",
+								"description": ""
+							},
+							{
+								"key": "api-key",
+								"value": "21f6a2bd-7f7c-310f-e053-3619f40adf17",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic dGVzdDp0ZXN0",
+								"description": ""
+							},
+							{
+								"key": "applicationname",
+								"value": "MobileApp",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n        \"id\": 3,\n        \"description\": \"My watch\",\n        \"status\": \"UNKNOWN\",\n        \"creationTime\": \"2019-04-10T16:10:13.797+0000\",\n        \"customer\": {\n            \"id\": 1,\n            \"name\": \"John\",\n            \"address\": {\n                \"streetNumber\": \"1-11\",\n                \"streetName\": \"Harbour\",\n                \"streetType\": \"Street\",\n                \"suburb\": \"Sydney\",\n                \"postCode\": \"2000\",\n                \"state\": \"NSW\",\n                \"country\": \"Australia\"\n            },\n            \"phone\": \"040000000\"\n        },\n        \"product\": {\n            \"id\": 0,\n            \"name\": \"IPhone\",\n            \"description\": \"IPhone\",\n            \"price\": {\n                \"amount\": 600,\n                \"currency\": \"AUD\"\n            },\n            \"category\": \"Electronics\"\n        }\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Order - 404 (Not Found)",
+					"request": {
+						"url": "http://localhost:8080/orders/2",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "correlationid",
+								"value": "4eeb94e4-8da1-40ac-ac31-19b331504b22",
+								"description": ""
+							},
+							{
+								"key": "userid",
+								"value": "1Z2345",
+								"description": ""
+							},
+							{
+								"key": "api-key",
+								"value": "21f6a2bd-7f7c-310f-e053-3619f40adf17",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic dGVzdDp0ZXN0",
+								"description": ""
+							},
+							{
+								"key": "applicationname",
+								"value": "MobileApp",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n        \"id\": 3,\n        \"description\": \"My watch\",\n        \"status\": \"UNKNOWN\",\n        \"creationTime\": \"2019-04-10T16:10:13.797+0000\",\n        \"customer\": {\n            \"id\": 1,\n            \"name\": \"John\",\n            \"address\": {\n                \"streetNumber\": \"1-11\",\n                \"streetName\": \"Harbour\",\n                \"streetType\": \"Street\",\n                \"suburb\": \"Sydney\",\n                \"postCode\": \"2000\",\n                \"state\": \"NSW\",\n                \"country\": \"Australia\"\n            },\n            \"phone\": \"040000000\"\n        },\n        \"product\": {\n            \"id\": 0,\n            \"name\": \"IPhone\",\n            \"description\": \"IPhone\",\n            \"price\": {\n                \"amount\": 600,\n                \"currency\": \"AUD\"\n            },\n            \"category\": \"Electronics\"\n        }\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
