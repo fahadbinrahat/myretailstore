@@ -2,7 +2,7 @@
 
 ## Overview
 
-This API offers capabilities to add, update, delete or retrieve online orders.
+This API offers capabilities to add, update, delete or retrieve online orders in RESTFul manner.
 
 ## API Source Scaffold
 
@@ -14,11 +14,13 @@ Folder | Details
 /src/main/resources | This folder contains application properties files and other resources
 /src/test/java | This folder contains test cases
 /apidoc | This folder contains swagger file
-/test/postman | This folder contains postman collection
+/test/postman | This folder contains postman collection.
 
 (pom.xml contains required project dependencies)
 
 ## Implementation Details
+
+The API is developed using Spring Boot framework.
 
 Requirement | Implementation
 ------|------------
@@ -30,3 +32,6 @@ JSON properties | Uses camelCase
 Large Responses | Use pagination for list order resource
 Cache-Control | Sets cache-control max age = 5 minutes
 
+## Live Testing Details
+
+API is deployed on AWS EC2 instance via Elastic BeanStalk. Postman is provided for testing having live endpoints.
