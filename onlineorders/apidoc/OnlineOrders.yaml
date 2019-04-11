@@ -111,7 +111,7 @@ paths:
 
         '200':
 
-          description: Successfully screated the order
+          description: Successfully retrieved all orders
 
           schema:
 
@@ -139,7 +139,15 @@ paths:
 
     put:
 
-      description: This resource is used to update an order. The request has a specific structure which must be followed else API throws a validation error      
+      description: This resource is used to update an order. The request has a specific structure which must be followed else API throws a validation error    
+      
+      consumes:
+
+        - application/json
+
+      produces:
+
+        - application/json
 
       parameters:
 
@@ -205,6 +213,71 @@ paths:
           schema:
 
             $ref: '#/definitions/500ErrorResponse'   
+
+    delete:
+
+      description: This resource is used to delete an order. 
+      
+      consumes:
+
+        - application/json
+
+      produces:
+
+        - application/json
+
+      parameters:
+
+        #header attributes
+
+        - $ref: '#/parameters/correlationid'
+
+        - $ref: '#/parameters/userid'    
+
+        - $ref: "#/parameters/applicationname"
+
+        - $ref: "#/parameters/api-key"
+
+        - in: path
+
+          name: orderid
+
+          required: true
+
+          type: number
+
+          minimum: 1
+
+          description: Identifier of the order
+        
+
+      #responses
+      responses:
+
+        '200':
+
+          description: Successfully deleted the order
+
+          schema:
+
+            $ref: '#/definitions/DeleteOrderResponse'
+
+        '400':
+
+          description: Request failed due to invalid request
+
+          schema:
+
+            $ref: '#/definitions/ErrorResponse'
+
+        '500':
+
+          description: Request failure due to backend error or internal api processing error
+
+          schema:
+
+            $ref: '#/definitions/500ErrorResponse'   
+
  
 parameters:
 
@@ -400,22 +473,26 @@ definitions:
         Status:
           type: string
           
-  # HTTP 200 Successful Order creation response
+  # HTTP 200 Successful Orders retrieval response
   RetrieveOrdersResponse:
     type: array
     items:
       $ref: '#/definitions/Order'
       
   
-          
-
   # HTTP 200 order update response
   UpdateOrderResponse:
     type: object
     properties:
         Status:
           type: string
-                
+  
+  # HTTP 200 order delete response
+  DeleteOrderResponse:
+    type: object
+    properties:
+        Status:
+          type: string
 
    # HTTP 400 invalid request
 
