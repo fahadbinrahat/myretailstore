@@ -26,7 +26,7 @@ Requirement | Implementation
 ------|------------
 Security | Uses HTTPS (leverages TLS encryption) and uses Basic Auth username and password in API header (Note actual implementation of API keys, usernames, passwords is not implemented)
 Resource Versioning | Uses static versioning (in route) - Other approaches such as header parameter specifying version or content-negotiation based versioning are not effective in caching scenarios
-Performance optimization | Use content negotiation for mobile client using spring filters to serve compact responses. PI to accept header param "ACCEPTS" with a value such as vnd.mobile and accordingly produces desired content type in response
+Performance optimization | Use content negotiation for mobile client using spring filters to serve compact responses. API to accept header param "ACCEPTS" with a value such as vnd.mobile and accordingly produces desired content type in response
 Secure Parameter| No PII data in URI hence not required
 JSON properties | Uses camelCase
 Large Responses | Use pagination for list order resource
