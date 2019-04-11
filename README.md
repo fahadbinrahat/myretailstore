@@ -10,10 +10,11 @@ The source code and API design specs are kept under following organised structur
 
 Folder | Details
 ------|------------
-src/main/java | This folder contains source packages 
-src/main/resources | This folder contains application properties files and other resources
-src/test/java | This folder contains test cases
+/src/main/java | This folder contains source packages 
+/src/main/resources | This folder contains application properties files and other resources
+/src/test/java | This folder contains test cases
 /apidoc | This folder contains swagger file
+/test/postman | This folder contains postman collection
 
 (pom.xml contains required project dependencies)
 
